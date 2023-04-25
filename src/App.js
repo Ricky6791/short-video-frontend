@@ -1,29 +1,34 @@
+import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Video from './components/Video'
+import axios from './axios'
 
 function App() {
+  const [videos, setVideos] = useState([])
+  useEffect(() => {
+    async function fetchPosts() {
+      const res = await axios.get('/v2/posts')
+      setVideos(res.data)
+      return res
+    }
+    fetchData()
+  }, [])
   return (
     <div className="App">
       <div className="app_videos">
-        <Video 
-        url="https://res.cloudinary.com/dxkxvfo2o/video/upload/v1608169738/video1_cvrjfm.mp4"
-        channel="nabendu82"
-        description="Macbook Air to new windows editing beast" 
-        song="I am a Windows PC"
-        likes={345}
-        shares={200}
-        messages={90}
-        />
-        <Video 
-        url="https://res.cloudinary.com/dxkxvfo2o/video/upload/v1608169739/video2_mecbdo.mp4"
-        channel="thewebdev"
-        description="Tuesday morning editing on kdenlive in Windows"
-        song="Kdenlive is great"
-        likes={445}
-        shares={290}
-        messages={109}
-        />
+        {videos.map(({ url, channel, description, song, likes, messages, shares }) => (
+          <Video
+            key={url}
+            url={url}
+            channel={channel}
+            description={description}
+            song={song}
+            likes={likes}
+            messages={messages}
+            shares={shares}
+          />
+        ))}
       </div>
     </div>
   );
