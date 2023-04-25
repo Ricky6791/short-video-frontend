@@ -1,8 +1,9 @@
 import React, {useRef, useState} from 'react'
 import'./Video.css'
 import VideoFooter from './VideoFooter'
+import VideoSideBar from './VideoSideBar'
 
-const Video = () => {
+const Video = ({url, channel, description, song, likes, shares, messages}) => {
     //causes video to play and pause on click
     const [playing, setPlaying] = useState(false)
     const videoRef = useRef(null)
@@ -18,14 +19,15 @@ const Video = () => {
     return (
         <div className="video">
             <video
-                src="https://res.cloudinary.com/dxkxvfo2o/video/upload/v1608169738/video1_cvrjfm.mp4"
+                src={url}
                 className="video__player"
                 loop
                 ref={videoRef}
                 onClick={handleVideoPress}
             >
             </video>
-            <VideoFooter />
+            <VideoFooter channel={channel} description={description} song={song} />
+            <VideoSideBar likes={likes} shares={shares} messages={messages}/>
         </div>
     )
 }
