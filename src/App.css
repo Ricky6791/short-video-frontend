@@ -1,5 +1,31 @@
+html{
+  scroll-snap-type: y mandatory;
+}
+
 .App {
-  text-align: center;
+  height: 100vh;
+  background-color: black;
+  display: grid;
+  place-items: center;
+}
+
+.App__videos{
+  position: relative;
+  height: 800px;
+  border-radius: 20px;
+  overflow: scroll;
+  width: 80%;
+  max-width: 500px;
+  scroll-snap-type: y mandatory;
+}
+
+.App__videos::-webkit-scrollbar{
+  display: none;
+}
+
+.App__videos{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .App-logo {
