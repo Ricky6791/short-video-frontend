@@ -7,10 +7,14 @@ function App() {
    const [videos, setVideos] = useState([])
    useEffect(() => {
      async function fetchData() {
+      try{
        const res = await axios.get('/v2/posts')
        setVideos(res.data)
        return res
+     } catch (error){
+        console.log(error)
      }
+    }
      fetchData()
   }, [])
   return (
