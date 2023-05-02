@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Video from './components/Video'
-import axios from './axios'
+import Video from './components/Video';
+import axios from './components/axios';
 
 function App() {
-  const [videos, setVideos] = useState([])
-  useEffect(() => {
-    async function fetchPosts() {
-      const res = await axios.get('/v2/posts')
-      setVideos(res.data)
-      return res
-    }
-    fetchData()
+   const [videos, setVideos] = useState([])
+   useEffect(() => {
+     async function fetchData() {
+       const res = await axios.get('/v2/posts')
+       setVideos(res.data)
+       return res
+     }
+     fetchData()
   }, [])
   return (
     <div className="App">
